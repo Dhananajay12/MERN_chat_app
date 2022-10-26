@@ -4,15 +4,18 @@ const app = express();
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 dotenv.config();
 connectDB();
-const PORT = process.env.PORT;
-
-app.use("/api/user", userRoutes);
-app.use(express.json());
+app.use(express.json()); // json data
 
 app.get("/", (req, res) => {
   res.send("API is running");
 });
+app.use("/api/user", userRoutes);
 
+app.use(notFound);
+app.use(errorHandler);
+
+const PORT = process.env.PORT;
 app.listen(PORT, console.log(`server running on port ${PORT}`));
