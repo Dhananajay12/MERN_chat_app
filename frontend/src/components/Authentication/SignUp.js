@@ -149,7 +149,9 @@ const SignUp = () => {
       <FormControl id="first-name" isRequired>
         <FormLabel>Name</FormLabel>
         <Input
+          type="text"
           placeholder="Enter Your Name"
+          style={{ padding: "25px" }}
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
@@ -157,6 +159,7 @@ const SignUp = () => {
         <FormLabel>Email Address</FormLabel>
         <Input
           type="email"
+          style={{ padding: "25px" }}
           placeholder="Enter Your Email Address"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -166,6 +169,7 @@ const SignUp = () => {
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
+            style={{ padding: "25px" }}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -174,7 +178,7 @@ const SignUp = () => {
               {show ? (
                 <AiOutlineEyeInvisible fontSize="25px" color="grey" />
               ) : (
-                <AiOutlineEye fontSize="25px" color="grey" />
+                <AiOutlineEye fontSize="25px" mt="3" color="grey" />
               )}
             </Button>
           </InputRightElement>
@@ -186,14 +190,15 @@ const SignUp = () => {
           <Input
             type={show ? "text" : "password"}
             placeholder="Confirm password"
+            style={{ padding: "25px" }}
             onChange={(e) => setConfirmpassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
               {show ? (
-                <AiOutlineEyeInvisible fontSize="25px" color="grey" />
+                <AiOutlineEyeInvisible fontSize="25px" mt="3" color="grey" />
               ) : (
-                <AiOutlineEye fontSize="25px" color="grey" />
+                <AiOutlineEye fontSize="25px" mt="3" color="grey" />
               )}
             </Button>
           </InputRightElement>
