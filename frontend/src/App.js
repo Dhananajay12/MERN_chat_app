@@ -1,15 +1,18 @@
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import "./App.css";
+import ChatProvider from "./Context/ChatProvide";
 import ChatPage from "./Pages/ChatPage";
 import Home from "./Pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <Route path="/" component={Home} exact />
-      <Route path="/chats" component={ChatPage} />
+      <ChatProvider>
+        <Route path="/" component={Home} exact />
+        <Route path="/chats" component={ChatPage} />
+      </ChatProvider>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
