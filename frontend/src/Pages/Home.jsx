@@ -20,7 +20,7 @@ const Home = () => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
 
     if (user) {
-      history.push("/chat");
+      history.push("/chats");
     }
   }, [history]);
 
@@ -41,7 +41,8 @@ const Home = () => {
         </Center>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
-        <Tabs variant="soft-rounded" colorScheme="green">
+        <Tabs variant="soft-rounded">
+          {/* colorScheme="green" */}
           <TabList mb="1em">
             <Tab width="50%">Login</Tab>
             <Tab width="50%">Sign Up</Tab>

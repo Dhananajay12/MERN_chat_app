@@ -54,7 +54,7 @@ const SignUp = () => {
       pic: pic,
     };
     try {
-      await axios.post("/api/user", newUser);
+      const { data } = await axios.post("/api/user", newUser);
       // console.log(newUser);
       toast({
         title: "Registration Successful",
@@ -63,7 +63,7 @@ const SignUp = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(newUser));
+      localStorage.setItem("userInfo", JSON.stringify(data));
       setPicLoading(false);
       history.push("/chats");
     } catch (error) {
@@ -77,26 +77,6 @@ const SignUp = () => {
       });
       setPicLoading(false);
     }
-    // try {
-    // console.log(name, email, password, pic);
-    // const config = {
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    // };
-    // const { data } = await axios.post(
-    //   "/api/user",
-    //   {
-    //     name,
-    //     email,
-    //     password,
-    //     pic,
-    //   },
-    //   config
-
-    // );
-
-    // } catch (error) {}
   };
 
   const postDetails = (pics) => {

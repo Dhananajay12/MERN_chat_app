@@ -3,7 +3,9 @@ const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
 
 const accessChat = asyncHandler(async (req, res) => {
+  console.log(req.body.userId);
   const { userId } = req.body;
+
   if (!userId) {
     console.log("UserID Param not sent with request");
     return res.sendStatus(400);
@@ -122,16 +124,10 @@ const addToGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
 
   const alreadyUser = await Chat.findOne({ userId });
-  console.log(alreadyUser);
+
   if (alreadyUser) {
     res.status(400);
     throw new Error("User already exists");
-  }
-
-  if (demo === userId) {
-    console.log("alredy Exist");
-    res.status(400);
-    throw new Error("alredy Exist");
   }
 
   const added = await Chat.findByIdAndUpdate(
@@ -150,6 +146,7 @@ const addToGroup = asyncHandler(async (req, res) => {
     res.json(added);
   }
 });
+
 const removeFormGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
   const remove = await Chat.findByIdAndUpdate(

@@ -14,7 +14,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { useHistory, withRouter } from "react-router-dom";
 const ProfileModel = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -45,16 +44,16 @@ const ProfileModel = ({ user, children }) => {
             <Image
               borderRadius="full"
               boxSize="150px"
-              src={user.pic}
-              alt={user.name}
+              src={user.data.pic}
+              alt={user.data.name}
             />
             <Text fontSize={{ base: "28px", md: "30px" }} fontFamily="">
-              Email : {user.email}
+              Email : {user.data.email}
             </Text>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="green" mr={3} onClick={onClose}>
+            <Button mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>
@@ -64,4 +63,4 @@ const ProfileModel = ({ user, children }) => {
   );
 };
 
-export default withRouter(ProfileModel);
+export default ProfileModel;

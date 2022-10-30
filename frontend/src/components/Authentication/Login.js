@@ -46,7 +46,7 @@ const Login = () => {
       password: password,
     };
     try {
-      await axios.post("/api/user/login", loginUser);
+      const { data } = await axios.post("/api/user/login", loginUser);
       // console.log(newUser);
       toast({
         title: "Registration Successful",
@@ -55,7 +55,7 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(loginUser));
+      localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       history.push("/chats");
     } catch (error) {

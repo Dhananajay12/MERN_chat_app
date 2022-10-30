@@ -6,7 +6,12 @@ import { ChatState } from "../Context/ChatProvide";
 
 const ChatPage = () => {
   const { user } = ChatState();
+
   console.log(user);
+  //  useEffect(() => {
+  //     const { user } = ChatState();
+  //  }, []);
+
   return (
     <div style={{ width: "100%" }}>
       {user && <SideBar />}
