@@ -54,8 +54,8 @@ const SignUp = () => {
       pic: pic,
     };
     try {
-      const { data } = await axios.post("/api/user", newUser);
-      // console.log(newUser);
+      const data = await axios.post("/api/user", newUser);
+
       toast({
         title: "Registration Successful",
         status: "success",
@@ -64,6 +64,7 @@ const SignUp = () => {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
+      console.log(data);
       setPicLoading(false);
       history.push("/chats");
     } catch (error) {

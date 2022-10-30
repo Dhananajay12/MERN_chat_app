@@ -6,5 +6,18 @@
     background-image: url("./images/1.jpg");
     background-size: cover;
     background-position: center;
-    color: black;
+    /* color: black; */
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(139, 139, 139);
 }

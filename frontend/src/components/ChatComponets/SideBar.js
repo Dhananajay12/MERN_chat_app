@@ -54,16 +54,14 @@ const SideBar = () => {
 
       const config = {
         headers: {
-          Authorization: `Bearer ${user.data.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
       const { data } = await axios.post("/api/chat", { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
-
       setSeleactedChat(data);
-
       setLoadingChat(false);
       onClose();
     } catch (error) {
@@ -95,7 +93,7 @@ const SideBar = () => {
 
       const config = {
         headers: {
-          Authorization: `Bearer ${user.data.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
@@ -149,8 +147,8 @@ const SideBar = () => {
               <Avatar
                 size="sm"
                 cursor="pointer"
-                name={user.data.name}
-                src={user.data.pic}
+                name={user.name}
+                src={user.pic}
               />
             </MenuButton>
             <MenuList>
