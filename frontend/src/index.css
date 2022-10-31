@@ -10,9 +10,63 @@ code {
   font-family: 'Poppins', sans-serif;
 }
 
+
 .messages {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   scrollbar-width: none;
+  margin-bottom: 1rem;
+}
+
+.css-6e3h0h {
+  background: #060610 !important;
+  color: white !important;
+}
+
+.button {
+  background: linear-gradient(to top left, #cc0066 0%, #ff5050 100%) !important;
+}
+
+.css-17b34fn {
+  background: #1a1a2e !important;
+}
+
+.css-1xduq5l,
+.css-1v08wwl {
+  background: #171522 !important;
+  color: white !important;
+  border: none;
+}
+
+.ColorForBar {
+  background: #12121a !important;
+  color: white !important;
+}
+
+.searchCardColor {
+  background: linear-gradient(to top left, #cc0066 0%, #ff5050 100%) !important;
+
+}
+
+.css-hxfald {
+  background: #1a1a2e !important;
+}
+
+.css-ol7u5k {
+  background: linear-gradient(to top left, #cc0066 0%, #ff5050 100%) !important;
+}
+
+
+
+.active2 {
+  background: linear-gradient(to top left, #cc0066 0%, #ff5050 100%) !important;
+}
+
+.active {
+  background: linear-gradient(to top left, #ff0066 0%, #ffcc99 100%);
+}
+
+.button2 {
+  background: linear-gradient(to top left, #333399 0%, #9999ff 100%) !important
 }

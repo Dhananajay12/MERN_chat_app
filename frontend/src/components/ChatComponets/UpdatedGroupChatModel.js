@@ -47,7 +47,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.get(`/api/user?search=${search}`, config);
-      console.log(data);
+
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -213,10 +213,10 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bg="#1a1a2e" color="white">
           <ModalHeader
             fontSize="35px"
-            fontFamily="Work sans"
+            fontFamily="Poppins"
             display="flex"
             justifyContent="center"
           >
@@ -244,10 +244,10 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
               />
               <Button
                 variant="solid"
-                colorScheme="teal"
                 ml={1}
                 isLoading={renameloading}
                 onClick={handleRename}
+                className="button"
               >
                 Update
               </Button>
@@ -273,7 +273,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={() => handleRemove(user)} colorScheme="red">
+            <Button onClick={() => handleRemove(user)} className="button">
               Leave Group
             </Button>
           </ModalFooter>

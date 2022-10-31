@@ -3,7 +3,8 @@
 .App {
     min-height: 100vh;
     display: flex;
-    background-image: url("./images/1.jpg");
+    background: linear-gradient(to top left, #14131d 0%, #1d1b30 100%);
+
     background-size: cover;
     background-position: center;
     /* color: black; */
@@ -15,7 +16,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: grey;
+    background: rgb(196, 195, 195);
 }
 
 ::-webkit-scrollbar-thumb:hover {

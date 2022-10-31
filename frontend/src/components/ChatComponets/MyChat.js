@@ -1,5 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { Box, useToast, Button, Stack, Text } from "@chakra-ui/react";
+import { Box, useToast, Button, Stack, Text, Avatar } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getSender } from "../../Config/ChatLogics";
@@ -12,12 +12,11 @@ const MyChat = ({ fetchAgain }) => {
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
   const toast = useToast();
-
+  console.log(chats);
   const fetchChats = async () => {
     try {
       const config = {
         headers: {
-          "Content-type": "application/json",
           Authorization: `Bearer ${user.token}`,
         },
       };
@@ -58,7 +57,7 @@ const MyChat = ({ fetchAgain }) => {
         pb={3}
         px={3}
         fontSize={{ base: "25px", md: "18px", lg: "24px" }}
-        fontFamily="Work sans"
+        fontFamily="Poppins"
         display="flex"
         w="100%"
         justifyContent="space-between"
@@ -68,8 +67,11 @@ const MyChat = ({ fetchAgain }) => {
         <GroupChatModal>
           <Button
             display="flex"
+            fontFamily="Poppins"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+            fontWeight="lighter"
             rightIcon={<AddIcon />}
+            className="button"
           >
             New Group Chat
           </Button>
@@ -91,26 +93,34 @@ const MyChat = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
-                color={selectedChat === chat ? "white" : "black"}
+                bg={
+                  selectedChat === chat
+                    ? "linear-gradient(to top left, #333399 0%, #9999ff 100%)"
+                    : "linear-gradient(to top left, #cc0066 0%, #ff5050 100%)"
+                }
+                color={selectedChat === chat ? "white" : "white"}
                 px={3}
                 py={2}
                 borderRadius="lg"
                 key={chat._id}
               >
-                <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-                {chat.latestMessage && (
-                  <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender.name} : </b>
-                    {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 51) + "..."
-                      : chat.latestMessage.content}
-                  </Text>
-                )}
+                <div style={{ display: "flex" }}>
+                  <div>
+                    <Text>
+                      {!chat.isGroupChat
+                        ? getSender(loggedUser, chat.users)
+                        : chat.chatName}
+                    </Text>
+                    {chat.latestMessage && (
+                      <Text fontSize="xs">
+                        <b>{chat.latestMessage.sender.name} : </b>
+                        {chat.latestMessage.content.length > 50
+                          ? chat.latestMessage.content.substring(0, 51) + "..."
+                          : chat.latestMessage.content}
+                      </Text>
+                    )}
+                  </div>
+                </div>
               </Box>
             ))}
           </Stack>

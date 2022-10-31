@@ -58,6 +58,7 @@ const Login = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       history.push("/chats");
+      window.location.reload();
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -106,7 +107,8 @@ const Login = () => {
       </FormControl>
 
       <Button
-        colorScheme="green"
+        className="button2"
+        color="white"
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
@@ -115,6 +117,8 @@ const Login = () => {
         Login
       </Button>
       <Button
+        className="button2"
+        color="white"
         colorScheme="teal"
         width="100%"
         style={{ marginTop: 15 }}

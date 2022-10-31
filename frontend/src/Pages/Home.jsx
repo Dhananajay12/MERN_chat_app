@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <Container maxW="xl" centerContent>
       <Box
-        d="flex"
+        display="flex"
         justifyContent="center"
         p={3}
         bg={"white"}
@@ -41,7 +41,7 @@ const Home = () => {
         </Center>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
-        <Tabs variant="soft-rounded" colorScheme="green">
+        <Tabs variant="soft-rounded" colorScheme="purple">
           {/* colorScheme="green" */}
           <TabList mb="1em">
             <Tab width="50%">Login</Tab>

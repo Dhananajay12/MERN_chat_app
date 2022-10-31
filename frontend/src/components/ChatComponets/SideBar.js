@@ -29,14 +29,23 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ChatLoading from "./ChatLoading";
 import UserListItem from "../UserAvater/UserListItem";
-
+import { getSender } from "../../Config/ChatLogics";
+import { Effect } from "react-notification-badge";
+import NotificationBadge from "react-notification-badge";
 const SideBar = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState();
 
-  const { user, setSeleactedChat, chats, setChats } = ChatState();
+  const {
+    user,
+    setSelectedChat,
+    chats,
+    setChats,
+    notification,
+    setNotification,
+  } = ChatState();
 
   const history = useHistory();
   const toast = useToast();
@@ -61,7 +70,7 @@ const SideBar = () => {
       const { data } = await axios.post("/api/chat", { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
-      setSeleactedChat(data);
+      setSelectedChat(data);
       setLoadingChat(false);
       onClose();
     } catch (error) {
@@ -121,29 +130,51 @@ const SideBar = () => {
         bg="white"
         w="100%"
         p="5px 10px 5px 10px"
-        borderWidth="5px"
+        className="ColorForBar"
       >
         <Tooltip label="Search User to Chat" hasArrow placement="bottom-end">
-          <Button variant="ghost" onClick={onOpen}>
+          <Button variant="ghost" className="button" onClick={onOpen}>
             <FiSearch />
             <Text display={{ base: "none", md: "flex" }} px="4">
               Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="work snas">
+        <Text fontSize="2xl" fontFamily="Poppins">
           Chat-With-Anyone
         </Text>
         <div>
           <Menu>
             <MenuButton p={2}>
+              <NotificationBadge
+                count={notification.length}
+                effect={Effect.SCALE}
+              />
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
-            {/* <MenuList>
-          </MenuList> */}
+            <MenuList pl={2} color="black">
+              {!notification.length && "No New Message"}
+              {notification.map((item) => (
+                <MenuItem
+                  key={item._id}
+                  onClick={() => {
+                    setSelectedChat(item.chat);
+                    setNotification(notification.filter((n) => n !== item));
+                  }}
+                >
+                  {item.chat.isGroupChat
+                    ? `New Message in ${item.chat.chatName}`
+                    : `New Message from ${getSender(user, item.chat.users)}`}
+                </MenuItem>
+              ))}
+            </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+            <MenuButton
+              className="button"
+              as={Button}
+              rightIcon={<BiChevronDown />}
+            >
               <Avatar
                 size="sm"
                 cursor="pointer"
@@ -151,7 +182,7 @@ const SideBar = () => {
                 src={user.pic}
               />
             </MenuButton>
-            <MenuList>
+            <MenuList color="black">
               <ProfileModel user={user}>
                 <MenuItem>My Profile</MenuItem>
               </ProfileModel>
@@ -161,11 +192,16 @@ const SideBar = () => {
           </Menu>
         </div>
       </Box>
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer
+        placement="left"
+        onClose={onClose}
+        isOpen={isOpen}
+        className="color"
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
-          <DrawerBody>
+          <DrawerBody mt={2}>
             <Box display="flex" pd={2}>
               <Input
                 placeholder="Search "
@@ -173,10 +209,12 @@ const SideBar = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button onClick={handleSearch}>Go</Button>
+              <Button className="button" onClick={handleSearch}>
+                Go
+              </Button>
             </Box>
             {loading ? (
-              <ChatLoading />
+              <ChatLoading mt={1} />
             ) : (
               searchResult?.map((user) => (
                 <UserListItem

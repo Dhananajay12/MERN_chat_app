@@ -6,7 +6,7 @@ const UserListItem = ({ user, handleFunction }) => {
     <Box
       onClick={handleFunction}
       cursor="pointer"
-      bg="#E8E8E8"
+      className="searchCardColor"
       _hover={{
         background: "#38B2AC",
         color: "white",
@@ -14,7 +14,7 @@ const UserListItem = ({ user, handleFunction }) => {
       w="100%"
       display="flex"
       alignItems="center"
-      color="black"
+      color="white"
       px={3}
       py={2}
       mb={2}
