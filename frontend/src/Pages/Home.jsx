@@ -41,7 +41,7 @@ const Home = () => {
         </Center>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
-        <Tabs variant="soft-rounded">
+        <Tabs variant="soft-rounded" colorScheme="green">
           {/* colorScheme="green" */}
           <TabList mb="1em">
             <Tab width="50%">Login</Tab>

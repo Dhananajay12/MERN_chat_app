@@ -9,3 +9,10 @@ body {
 code {
   font-family: 'Poppins', sans-serif;
 }
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
