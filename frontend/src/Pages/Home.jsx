@@ -25,7 +25,7 @@ const Home = () => {
   }, [history]);
 
   return (
-    <Container maxW="xl" centerContent>
+    <Container maxW="xl" mt={20} centerContent>
       <Box
         display="flex"
         justifyContent="center"
